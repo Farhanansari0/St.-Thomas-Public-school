@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Thomas Public School | Suriya, Giridih</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- Base & Reset --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        :root {
+            --primary-color: #0c2461; /* Deep Blue - Trust, Authority */
+            --secondary-color: #f6b93b; /* Gold - Excellence, Success */
+            --accent-color: #e55039; /* Red-Orange for Notices/Alerts */
+            --text-dark: #333;
+            --text-light: #fff;
+            --bg-light: #f8f9fa;
+        }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        a { text-decoration: none; transition: 0.3s; }
+        ul { list-style: none; }
+        
+        /* --- Utility Classes --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-title span { color: var(--secondary-color); }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* --- Top Contact Bar --- */
+        .top-bar {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 8px 0;
+            font-size: 13px;
+        }
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .top-bar i { margin-right: 5px; color: var(--secondary-color); }
+        .contact-info span { margin-left: 20px; }
+
+        /* --- Navbar / Header --- */
+        header {
+            background-color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            color: var(--primary-color);
+            font-size: 28px;
+            font-weight: 700;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 1px;
+        }
+        .logo h1 span { color: var(--secondary-color); }
+        
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+        nav ul li a {
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 15px;
+        }
+        nav ul li a:hover { color: var(--secondary-color); }
+        
+        .btn-apply {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 10px 22px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .btn-apply:hover {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            /* Using a high-quality stock image of a school building/campus */
+            background: linear-gradient(rgba(12, 36, 97, 0.8), rgba(12, 36, 97, 0.8)), 
+                        url('https://images.unsplash.com/photo-1599723226760-444b035f2596?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            position: relative;
+        }
+        .hero-content h2 {
+            font-size: 56px;
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 20px;
+            animation: fadeInDown 1.2s ease-in-out;
+        }
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease-in-out;
+        }
+        .hero .btn-main {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--secondary-color);
+            padding: 14px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+        .hero .btn-main:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        /* --- Features Section --- */
+        .features { padding: 90px 0; background: #fff; }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .feat-card {
+            background: var(--bg-light);
+            padding: 40px 25px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #eee;
+            transition: 0.4s;
+        }
+        .feat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--secondary-color);
+        }
+        .feat-card i {
+            font-size: 45px;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+        }
+        .feat-card h3 { color: var(--primary-color); margin-bottom: 15px; }
+        .feat-card p { color: #666; font-size: 15px; }
+
+        /* --- School Gallery Section (Naya Add kiya hai!) --- */
+        .gallery { padding: 90px 0; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            height: 250px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(12, 36, 97, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-weight: bold;
+            font-size: 18px;
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        
+        /* Grid spans for variation */
+        .gallery-item.large { grid-column: span 2; grid-row: span 2; height: 515px; }
+
+        /* --- About & Notice Board --- */
+        .info-section { padding: 80px 0; background: #fff; }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .about-text p { margin-bottom: 20px; color: #555; }
+        
+        .notice-board {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 5px solid var(--primary-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .notice-board h3 { color: var(--primary-color); margin-bottom: 25px; font-family: 'Oswald', sans-serif; }
+        .notice-board h3 i { color: var(--accent-color); margin-right: 10px; }
+        .notice-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+        .notice-item:last-child { border-bottom: none; }
+        .notice-date { color: var(--accent-color); font-weight: bold; font-size: 14px; margin-bottom: 5px; }
+
+        /* --- Testimonials Section (Naya Add kiya hai!) --- */
+        .testimonials { padding: 90px 0; background-color: var(--bg-light); text-align: center;}
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .test-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.03);
+            position: relative;
+        }
+        .test-card::before {
+            content: "\f10d"; font-family: "Font Awesome 5 Free"; font-weight: 900;
+            position: absolute; top: 20px; left: 20px; font-size: 30px; color: #eee;
+        }
+        .test-card p { font-style: italic; color: #666; margin-bottom: 20px; }
+        .test-card h4 { color: var(--primary-color); font-weight: 700; }
+        .test-card span { color: #999; font-size: 14px; }
+
+        /* --- Footer --- */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 70px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-col h3 { color: var(--secondary-color); margin-bottom: 20px; font-family: 'Oswald', sans-serif; }
+        .footer-col p, .footer-col a { color: #b0bec5; font-size: 14px; margin-bottom: 10px; display: block;}
+        .footer-col a:hover { color: var(--secondary-color); text-indent: 5px; }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            color: #78909c;
+        }
+        
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 992px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-item.large { height: 250px; grid-column: span 1; grid-row: span 1;}
+            .hero-content h2 { font-size: 40px; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            header .container { flex-direction: column; gap: 15px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .top-bar { text-align: center; }
+            .top-bar .container { justify-content: center; flex-direction: column; gap: 5px;}
+            .contact-info span { margin: 0 10px; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <div class="location">
+                <i class="fas fa-map-marker-alt"></i> Suriya, Giridih, Jharkhand, 825320
+            </div>
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> +91 98765 43210</span>
+                <span><i class="fas fa-envelope"></i> info@stthomaspublicschool.com</span>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>ST. THOMAS <span>PUBLIC SCHOOL</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Academics</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn-apply">Admission Open '26</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content container">
+            <h2>Nurturing Minds, Building Futures</h2>
+            <p>Welcome to Suriya's premier institution for holistic education. We combine modern learning methodologies with values that empower students to become compassionate leaders.</p>
+            <a href="#" class="btn-main">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why <span>Choose Us</span></h2>
+            <div class="features-grid">
+                <div class="feat-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Expert Faculty</h3>
+                    <p>Dedicated and qualified teachers committed to individual student growth and academic excellence.</p>
+                </div>
+                <div class="feat-card">
+                    <i class="fas fa-microscope"></i>
+                    <h3>State-of-the-art Labs</h3>
+                    <p>Modern Science and Computer labs providing practical exposure and hands-on learning experiences.</p>
+                </div>
+                <div class="feat-card">
+                    <i class="fas fa-futbol"></i>
+                    <h3>Holistic Development</h3>
+                    <p>Wide range of co-curricular activities, sports, and arts for a well-rounded education.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="container">
+            <h2 class="section-title">Life at <span>St. Thomas</span></h2>
+            <div class="gallery-grid">
+                <div class="gallery-item large">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=600&auto=format&fit=crop" alt="Classroom">
+                    <div class="gallery-overlay">Modern Classroom Learning</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=400&auto=format&fit=crop" alt="Students">
+                    <div class="gallery-overlay">Happy Students</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=400&auto=format&fit=crop" alt="Library">
+                    <div class="gallery-overlay">Our Library</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1606092195730-5d7b9736c5d5?q=80&w=400&auto=format&fit=crop" alt="Science Lab">
+                    <div class="gallery-overlay">Science Experiments</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1526676037777-05a232554f77?q=80&w=400&auto=format&fit=crop" alt="Sports">
+                    <div class="gallery-overlay">Sports Activities</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=400&auto=format&fit=crop" alt="Group Activity">
+                    <div class="gallery-overlay">Group Activities</div>
+                </div>
+                 <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1596495573175-97afb57c6b9b?q=80&w=400&auto=format&fit=crop" alt="Computer Lab">
+                    <div class="gallery-overlay">IT Education</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn-main" style="color: var(--primary-color); border-color: var(--primary-color); border-radius: 5px;">View Full Gallery</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="container info-grid">
+            <div class="about-text">
+                <h2 class="section-title" style="text-align: left; left: 0; transform: none;">About <span>Our School</span></h2>
+                <p>Located in Suriya, Giridih, St. Thomas Public School is more than just an educational institution; it is a community where students are encouraged to explore, innovate, and grow. Since our inception, we have strived to create an environment that blends intellectual curiosity with moral integrity.</p>
+                <p>Our curriculum is designed to meet modern standards while rootings students in traditional values, ensuring they are prepared for the challenges of tomorrow.</p>
+                <a href="#" style="color: var(--primary-color); font-weight: 600;">Read Principal's Message <i class="fas fa-angle-right"></i></a>
+            </div>
+            
+            <div class="notice-board">
+                <h3><i class="fas fa-bullhorn"></i> Important Notices</h3>
+                <div class="notice-item">
+                    <div class="notice-date">May 15, 2026</div>
+                    <div>Final Examinations schedule for Classes VI-XII is now available. Download here.</div>
+                </div>
+                <div class="notice-item">
+                    <div class="notice-date">May 10, 2026</div>
+                    <div>Admissions for the Session 2026-27 are now open. Limited seats!</div>
+                </div>
+                <div class="notice-item">
+                    <div class="notice-date">April 28, 2026</div>
+                    <div>School will remain closed on May 1st on account of Labour Day.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What <span>Parents Say</span></h2>
+            <div class="test-grid">
+                <div class="test-card">
+                    <p>"The teachers at St. Thomas are truly dedicated. My son's confidence and grades have improved significantly. We are very happy."</p>
+                    <h4>Mr. S. Kumar</h4>
+                    <span>Parent, Class VII</span>
+                </div>
+                <div class="test-card">
+                    <p>"We love the balance between academics and sports. The modern facilities combined with values make this school perfect for Suriya."</p>
+                    <h4>Mrs. R. Sharma</h4>
+                    <span>Parent, Class X</span>
+                </div>
+                <div class="test-card">
+                    <p>"A safe environment where our children are cared for and challenged intellectually. Highly recommended!"</p>
+                    <h4>Mr. A. Singh</h4>
+                    <span>Parent, Class IV</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>St. Thomas Public School</h3>
+                    <p>Empowering minds in Suriya since [Establishment Year]. Join us in building a better future.</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Suriya, Giridih, Jharkhand</p>
+                    <p>825320</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <a href="#">About Us</a>
+                    <a href="#">Admissions</a>
+                    <a href="#">Academic Calendar</a>
+                    <a href="#">School Rules</a>
+                    <a href="#">Photo Gallery</a>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@stthomasps.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sat: 8:00 AM - 2:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 St. Thomas Public School, Suriya. All Rights Reserved. | Designed with ❤️ by [Your Name/Company]
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
